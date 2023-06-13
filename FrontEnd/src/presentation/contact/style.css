@@ -1,0 +1,25 @@
+
+.content{
+    padding: 1.1%;
+    margin: 0%;
+    background-image: url('123.jpg');
+}
+.form-h-100-contact-wrap-p-5{
+
+background-color: rgba(177, 177, 177, 0.5);
+border-radius: 200px;
+padding: 43px;
+border-style: solid;
+  border-color: rgb(0, 0, 0);
+}
+
+ .error{
+color: #c00;
+}
+.btn-btn-block-btn-primary-rounded-0-py-2-px-4{
+    border-radius: 10px;
+    color: blue;
+    height: 50px;
+    border-style: solid;
+  border-color: rgb(251, 4, 4);
+}

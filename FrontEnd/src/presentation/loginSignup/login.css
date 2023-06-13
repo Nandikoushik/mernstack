@@ -1,0 +1,42 @@
+.login {
+  background: linear-gradient(
+    to bottom right,
+    rgb(21, 208, 96),
+    rgb(223, 235, 93)
+  );
+  padding: 1%;
+  margin: 34%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(11, 11, 11);
+  border-radius: 25px;
+}
+
+#sign {
+  background: linear-gradient(
+    to bottom right,
+    rgb(21, 208, 96),
+    rgb(223, 235, 93)
+  );
+  border-radius: 25px;
+}
+.errorClass {
+  color: red;
+  font-weight: 500px;
+}
+.root {
+  background-image: url("123.jpg");
+  padding: 4.5%;
+  margin: 0%;
+}
+
+.signroot {
+  background-image: url("123.jpg");
+  padding: 15.5%;
+  margin: 0%;
+  padding-top: 5.5%;
+}
