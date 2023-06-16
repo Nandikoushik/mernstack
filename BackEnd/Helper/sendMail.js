@@ -1,6 +1,8 @@
 const nodemailer = require("nodemailer");
 const Mailgen = require("mailgen");
 
+const dotenv = require("dotenv");
+dotenv.config();
 const sendMail = async function (req, res) {
   try {
     const userEmail = req.body.email;
@@ -10,8 +12,8 @@ const sendMail = async function (req, res) {
     let config = {
       service: "gmail",
       auth: {
-        user: "careerkoushik2023@gmail.com",
-        pass: "vafdenvlrfikxhsd",
+        user: process.env.mailId,
+        pass: process.env.mailPassword,
       },
     };
 
