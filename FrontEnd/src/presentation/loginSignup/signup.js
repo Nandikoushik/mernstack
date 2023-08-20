@@ -7,6 +7,7 @@ import "./login.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Loading from "../loadingWindow/loading";
 import swal from "sweetalert";
 
 function Signup() {
@@ -25,6 +26,7 @@ function Signup() {
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [loading,setLoading] = useState(false);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -84,23 +86,26 @@ function Signup() {
   };
 
   useEffect(() => {
-    console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      let url = "/" + formdata.type + "-Registration";
+      let url ="/"+formdata.type + "-Registration";
       let emaildata = {
         email: formdata.email,
         Name: formdata.Name,
         type: formdata.type,
         action: "signup",
       };
+
       if (formdata.type === "professional") {
         formdata.pending = false;
         formdata.booking = false;
         formdata.feedback = 1;
       }
+      setLoading(true);
       axios
         .post(url, formdata)
         .then((res) => {
+          console.log('singup responce =>'+JSON.stringify(res));
+          setLoading(false);
           console.log("success", res);
           if (res.data.acknowledged === true) {
             swal("Good job!", "Acount Created Succesfully", "success");
@@ -113,6 +118,7 @@ function Signup() {
                 }
               })
               .catch((err) => {
+          setLoading(false);
                 console.log(err);
               });
           } else {
@@ -138,6 +144,7 @@ function Signup() {
 
   return (
     <div className="signroot">
+      {loading?<><Loading></Loading></>:(null)}
       <div id="sign">
         <Form noValidate onSubmit={handleSubmit}>
           <Row className="mb-3">

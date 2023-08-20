@@ -1,12 +1,13 @@
 import { useLocation } from "react-router";
+import "./aboutstyle.css";
 function About() {
   const location = useLocation();
   console.log(location.state);
   return (
-    <>
-      <h1>About Page</h1>
-      <h4>
-        Urban Company is a technology platform offering a variety of services at
+    <div className="about" id="about">
+      <h1 style={{color:'red'}}>About Page</h1>
+      <h4 style={{color:'white'}}>
+        It is a technology platform offering a variety of services at
         home. Customers use our platform to book services such as beauty
         treatments, haircuts, massage therapy, cleaning, plumbing, carpentry,
         appliance repair, painting etc. These services are delivered in the
@@ -17,7 +18,7 @@ function About() {
         financing, insurance and brand, helping them succeed and deliver on this
         promise.{" "}
       </h4>
-    </>
+    </div>
   );
 }
 

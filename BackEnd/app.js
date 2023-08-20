@@ -1,4 +1,6 @@
+
 const express = require("express");
+const path = require('path');
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -7,14 +9,27 @@ app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: false,
+
   })
 );
+
+const __dirname1=path.resolve();
+if(process.env.NODE_ENV==='production'){
+  app.use(express.static(path.join(__dirname1,"../FrontEnd/build")));
+  app.use('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname1,"..","FrontEnd","build","index.html"));
+  })
+}else{
+app.get('/',(req,res)=>{
+  res.send('Server Is Running ');
+})
+}
+
 app.use(cors());
 const dotenv = require("dotenv");
 dotenv.config();
-
 app.use("/", route);
-const port = process.env.port || 9000;
+const port = process.env.PORT || 6060;
 app.listen(port, (err) => {
   if (err) {
     console.log(`Error detected on port : ${port}`);
@@ -22,6 +37,7 @@ app.listen(port, (err) => {
     console.log(`Connection Success on port : ${port}`);
   }
 });
+
 
 /*
 const path = require('path');

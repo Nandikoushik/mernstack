@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
-import Popup from "reactjs-popup";
+//import Popup from "reactjs-popup";
+import './bookingarea.css';
+import Loading from "../../presentation/loadingWindow/loading";
 function Bookingarea() {
   const [data, setData] = useState([]);
   const Navigate = useNavigate();
+  const [loading,setLoading] = useState(false);
   const [randomNo, setRandomNo] = useState(
     parseInt(1001 + Math.random() * (9000 - 1001))
   );
@@ -16,7 +19,7 @@ function Bookingarea() {
     if (sessionStorageData) {
       const data = {
         email: sessionStorageData.email,
-        type: sessionStorageData.type,
+        type: sessionStorageData.type,      
       };
       const url = "/pending";
       axios
@@ -58,9 +61,11 @@ function Bookingarea() {
       axios
         .put("/complete", { id: id })
         .then(() => {
+          setLoading(false);
           console.log(" Job Success");
         })
         .catch((err) => {
+          setLoading(false);
           console.log(err);
         });
     }
@@ -69,18 +74,22 @@ function Bookingarea() {
   function handleChange(id, value) {
     const data = { id: id, action: value };
     const url = "/pendingupdate";
+    setLoading(true);
     axios
       .put(url, data)
       .then((res) => {
+        setLoading(false);
         window.location.reload();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {setLoading(false);
+        console.log(err)});
   }
 
   return (
     <>
-      <div className="App"></div>
-      <h2>This Is Booking Area For Professionals</h2>
+      <div className="bookingarea">
+        {loading?<Loading></Loading>:null}
+      <h2> Professionals Booking Counter</h2>
       {data.length !== 0 ? (
         <>
           {data.map((item) => (
@@ -164,7 +173,7 @@ function Bookingarea() {
           
         </>
       )}
-      {<Popup >
+      {/* {<Popup >
                      <div className='modal'>
                             <div className='content'>
                                 Welcome to GFG!!!
@@ -175,7 +184,8 @@ function Bookingarea() {
                         </div>
       
                     
-            </Popup>}
+            </Popup>} */}
+            </div>
     </>
   );
 }

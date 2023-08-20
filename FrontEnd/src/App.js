@@ -3,7 +3,7 @@ import Navbar from "./presentation/navBar/navbar";
 import Routes from "./Router/router";
 function App() {
   return (
-    <div className="App">
+    <div className="App1">
       <Navbar></Navbar>
       <Routes></Routes>
     </div>

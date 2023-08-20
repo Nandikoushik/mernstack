@@ -1,0 +1,106 @@
+.contact-form{
+    padding: 0 3rem 0 3rem;
+    display: flex;
+    height: 80vh;
+    margin-top: 4rem;
+      /* scroll */
+  padding-top: 3rem;
+}
+.yellow{
+    color: #0c04ff;
+}
+.c-left{
+    text-align: center !important;
+    padding-top: 25px;
+    color: white !important;
+}
+
+.c-right{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex: 1;
+}
+
+.c-right>form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    
+}
+
+.c-right .user{
+    width: 24rem;
+    height: 3rem;
+    padding: 0.3em;
+    outline: none;
+    border: 2px solid #40008a;
+    border-radius: 8px;
+    font-size: 19px;
+    color: white   
+}
+
+.c-right .user:hover{
+    box-shadow: 0 0 9px #7500fa;
+}
+
+input{
+    background-color: var(--purple)
+}
+textarea{
+    height: 5rem!important;
+    background-color: var(--purple)
+}
+
+.done{
+    font-size: 19px;
+    color: green;
+}
+.not-done{
+    font-size: 19px;
+    color: red;
+}
+
+.c-blur1{
+    top: 1rem;
+    left: 8rem;
+}
+
+@media screen and (max-width: 480px) {
+    .contact-form{
+        padding: 0;
+        flex-direction: column;
+        gap: 5rem;
+        height: 40rem;
+    }
+    .c-right .user{
+        width: 16rem;
+    }
+
+}
+html {
+    --section-background-color: linear-gradient(
+      to bottom left,rgba(240, 81, 81, 0.925), rgba(4, 250, 250, 0.87)
+     
+    );
+    --image-gradient: linear-gradient(
+      to bottom left,
+      rgba(240, 81, 81, 0.925), rgba(4, 250, 250, 0.87)
+    );
+  
+    --imp-text-color: #030244;
+    --imp-bold-text-color: #ff0000;
+  }
+  .contact{
+   /*text-align: center;*/
+    position: relative !important;
+    padding-top: 150px !important;
+    padding-bottom: 120px !important;
+    background-image: var(--section-background-color) !important;
+       padding: 0px;
+      margin: 0px; 
+      border: 2 px;
+     
+  }

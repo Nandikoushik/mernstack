@@ -1,52 +1,82 @@
+import React, { useState, useRef } from 'react'
+import emailjs from "@emailjs/browser";
+import { Container, Row, Col } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import './Contact.css'
 
-import './style.css'
-function contact() {
+const Contact = () => {
+  const form = useRef();
+  const [done, setDone] = useState(false)
+  const [notDone, setNotDone] = useState(false)
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+    setDone(false)
+    setNotDone(false)
+  }
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    if (!formData.from_name || !formData.reply_to || !formData.message) {
+      setNotDone(true)
+    } else {
+
+      //  Please use your own credentials from emailjs or i will recive your email
+
+      emailjs
+        .sendForm(
+          "service_8pfougm",
+          "template_wqyu1zc",
+          form.current,
+          "hahS5JmrAgICUmpGs"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            setDone(true);
+            mailSendDone(e);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    }
+  };
+
+  const mailSendDone=(e)=>{
+    e.preventDefault();
+    setTimeout(()=>{
+      setDone(false);
+    },5000)
+  }
+
+
   return (
-<div class="content">
-<div class="container">
-<div class="row align-items-stretch justify-content-center no-gutters">
-<div class="col-md-7">
-<div class="form-h-100-contact-wrap-p-5">
-<h3 class="error"><b>Let's Talk</b></h3>
-<form class="mb-5"  id="contactForm" name="contactForm" novalidate="novalidate" className="contactForm">
-<div class="row">
-<div class="col-md-6 form-group mb-3">
-<label for="" class="col-form-label"><b>Name *</b></label>
-<input type="text" class="form-control error" name="name" id="name" placeholder="Your name" aria-required="true" aria-invalid="true"/><label id="name-error" class="error" for="name">Please enter your name</label>
-</div>
-<div class="col-md-6 form-group mb-3">
-<label for="" class="col-form-label"><b>Email *</b></label>
-<input type="email" class="form-control error" name="email" id="email" placeholder="Your email" aria-required="true"/><label id="email-error" class="error" for="email">Please enter a valid email address</label>
-</div>
-</div>
-<div class="row">
-<div class="col-md-12 form-group mb-3">
-<label for="budget" class="col-form-label"><b>Subject</b></label>
-<input type="text" class="form-control" name="subject" id="subject" placeholder="Your subject"/>
-</div>
-</div>
-<div class="row mb-5">
-<div class="col-md-12 form-group mb-3">
-<label for="message" class="col-form-label"><b>Message *</b></label>
-<textarea class="form-control error" name="message" id="message" cols="30" rows="4" placeholder="Write your message" aria-required="true"></textarea><label id="message-error" class="error" for="message">Please enter a message</label>
-</div>
-</div>
-<div class="row justify-content-center">
-<div class="col-md-5 form-group text-center">
-<input type="submit" value="Send Message" class="btn-btn-block-btn-primary-rounded-0-py-2-px-4" disabled/>
-<span class="submitting"></span>
-</div>
-</div>
-</form>
-<div id="form-message-warning mt-4"></div>
-<div id="form-message-success"><b>
-Your message was sent, thank you!</b>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-  );
+    <Container  className='contact'>
+      <Row >
+        <Col md={6} className="c-left" >
+          <h1  style={{'color':'red'}}>Get in Touch</h1>
+          <h1 className="yellow">Contact me on</h1>
+          <br />
+          <h3 style={{ fontFamily: 'monospace', color: 'red' }}>[ +91  9564621375 ]</h3>
+          <br />
+          <h3 style={{ fontFamily: 'monospace', color: 'green' }}>[  careerkoushik2023@gmail.com  ]</h3>
+        </Col>
+        <Col md={6} className="c-right">
+          <form ref={form} onSubmit={sendEmail}>
+            <input type="text" name="from_name" className="user" placeholder="Name" onChange={handleChange} defaultValue="" />
+            <input type="email" name="reply_to" className="user" placeholder="Email" onChange={handleChange} defaultValue="" />
+            <textarea name="message" className="user" placeholder="Message" onChange={handleChange} defaultValue="" />
+            <span className='not-done' >{notDone && "Please, fill all the input field before click on Send Button"}</span>
+            <Button type="submit" className="button" disabled={done}>Send</Button>
+            <span className='done'>{done && "Thanks for contacting with me and be sure i have recieved your mail.If you need me Urgent , you can conatct me on Linkedin Also."}</span>
+          </form>
+        </Col>
+      </Row>
+    </Container>
+  )
 }
-export default contact;
+
+export default Contact

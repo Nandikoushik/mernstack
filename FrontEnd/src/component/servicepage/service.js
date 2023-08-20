@@ -8,10 +8,14 @@ import electrician from "./elec.png";
 import driver from "./drive.png";
 import swal from "sweetalert";
 import ShowRating from "../StarRating/showRating";
+import './servicepage.css';
+import Loading from "../../presentation/loadingWindow/loading";
 function Service() {
   const Navigate = useNavigate();
+  const [loading,setLoading]=useState(false);
   const sessionStorageData = sessionStorage.getItem("user-loginData");
   const [userdata] = useState(JSON.parse(sessionStorageData));
+  const[alert,setAlert]=useState(false)
 
   const [type, setType] = useState(null);
   const [data, setData] = useState([]);
@@ -20,12 +24,20 @@ function Service() {
     const url = "/proflist/" + type;
     event.preventDefault();
     if (type !== null) {
+      setLoading(true);
       axios
         .get(url)
         .then((res) => {
-          setData(res.data);
+          setLoading(false);
+          if(res.length!=0){
+            setData(res.data);
+          }else{
+            setAlert(true);
+          }
+          
         })
         .catch((err) => {
+          setLoading(false);
           console.log(err);
         });
     } else {
@@ -36,6 +48,13 @@ function Service() {
         footer: "Try Again !",
       });
     }
+    if(alert){
+      swal({
+      icon: "error",
+      title: "Oops...",
+      text: `No ${type} Found At This Moment ` ,
+      footer: " Please Try Again  SomeTime!",
+    })}
   }
   async function Booking(profdata) {
     const url = "/booking";
@@ -53,10 +72,12 @@ function Service() {
       Accept: false,
       feedbackStatus: false,
     };
+    setLoading(false);
     axios
       .post(url, data)
       .then((res) => {
         if (res.data.success === true) {
+          setLoading(false);
           let emaildata = {
             email: profdata.email,
             Name: profdata.Name,
@@ -76,15 +97,19 @@ function Service() {
             .catch((err) => {
               console.log(err);
             });
+        }else{
+          alert('No ')
         }
       })
       .catch((error) => {
+        setLoading(false);
         console.log(error);
       });
   }
 
   return (
-    <div className="App">
+    <div className="servicepage">
+      {loading?(<Loading></Loading>):null}
       {data.length === 0 ? (
         <>
           {" "}

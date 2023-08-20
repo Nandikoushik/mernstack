@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import StarRating from "../StarRating/rating";
 import axios from "axios";
 import { Button } from "react-bootstrap";
-import "../../App.css";
+import './addtocart.css';
 import { useNavigate } from "react-router";
 import ShowRating from "../StarRating/showRating";
 
@@ -37,7 +37,7 @@ function Addtocart() {
 
   return (
     <>
-      <div className="App">
+      <div className="addtocart">
         {data.length !== 0 ? (
           <>
             <table>

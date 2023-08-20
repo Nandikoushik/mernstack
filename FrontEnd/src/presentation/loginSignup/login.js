@@ -8,6 +8,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import "./login.css";
 import axios from "axios";
 import swal from "sweetalert";
+import Loading from "../loadingWindow/loading";
 
 function Login() {
   const Navigate = useNavigate();
@@ -19,6 +20,7 @@ function Login() {
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [loading,setLoading] = useState(false);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -56,25 +58,26 @@ function Login() {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       let url ="/"+logindata.type + "-login";
+      setLoading(true);
       axios
         .post(url, logindata)
         .then((res) => {
-          if (res.data.success) {
+          console.log('Login responce =>'+JSON.stringify(res));
+          setLoading(false);
+          if (res.data.success){
             sessionStorage.setItem(
               `${logindata.type}-loginData`,
               JSON.stringify(res.data.data)
             );
 
             if (res.data.data.type === "professional") {
-              swal("Good job!", "Login SuccessFull", "success");
               Navigate("/bookarea");
               window.location.reload();
             } else {
-              swal("Good job!", "Login SuccessFull", "success");
               Navigate("/service");
               window.location.reload();
             }
-          } else {
+          }else {
             swal({
               icon: "error",
               title: "Oops...",
@@ -84,6 +87,7 @@ function Login() {
           }
         })
         .catch((err) => {
+          setLoading(false);
           console.log(err);
         });
     }
@@ -105,6 +109,7 @@ function Login() {
 
   return (
     <div className="root">
+      {loading?<><Loading></Loading></>:(null)}
       <div className="login">
         <Form noValidate onSubmit={handleSubmit}>
           <Row className="mb-3">

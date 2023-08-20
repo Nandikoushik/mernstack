@@ -1,31 +1,35 @@
 .login {
   background: linear-gradient(
     to bottom right,
-    rgb(21, 208, 96),
-    rgb(223, 235, 93)
+    rgb(21, 155, 208),
+    rgb(244, 38, 72)
   );
-  padding: 1%;
-  margin: 34%;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  padding: 1.5%;
+  margin: 32%;
+  margin-top: 0%;
+  margin-bottom: 7.2%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: rgb(11, 11, 11);
   border-radius: 25px;
+  text-align: center;
 }
 
 #sign {
   background: linear-gradient(
     to bottom right,
-    rgb(21, 208, 96),
-    rgb(223, 235, 93)
+    rgb(89, 131, 238),
+    rgb(247, 39, 39)
   );
+  margin-top: 1%;
   border-radius: 25px;
+  padding: 15px;
+  margin-bottom: 0%;
 }
 .errorClass {
-  color: red;
+  color: rgb(0, 255, 8);
   font-weight: 500px;
 }
 .root {
@@ -38,5 +42,6 @@
   background-image: url("123.jpg");
   padding: 15.5%;
   margin: 0%;
-  padding-top: 5.5%;
+  padding-top: 3.5%;
+  text-align: center;
 }

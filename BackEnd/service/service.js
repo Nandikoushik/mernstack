@@ -3,37 +3,37 @@ const jwt = require("jsonwebtoken");
 var path = require("path");
 require("dotenv").config({ path: ".env" });
 const { MongoClient, ObjectId } = require("mongodb");
-
+const dataBaseUrl='mongodb+srv://careerkoushik2023:kPalU2LaBTVivbNV@cluster0.2fxapyj.mongodb.net/MernStack01?retryWrites=true&w=majority';
 //conect to userlist
 const userconnect = async function () {
-  return new MongoClient("mongodb://localhost:27017")
-    .db("koushiknandi")
+  return new MongoClient(dataBaseUrl)
+    .db("MernStack01")
     .collection("userlist");
 };
 // token collection create
 const tokencollection = async function () {
-  return new MongoClient("mongodb://localhost:27017")
-    .db("koushiknandi")
+  return new MongoClient(dataBaseUrl)
+    .db("MernStack01")
     .collection("token");
 };
 
 //connect to profesionallist
 const profconnect = async function () {
-  return new MongoClient("mongodb://localhost:27017")
-    .db("koushiknandi")
+  return new MongoClient(dataBaseUrl)
+    .db("MernStack01")
     .collection("vendor");
 };
 
 //connnect to profesional token
 const proftokencollection = async function () {
-  return new MongoClient("mongodb://localhost:27017")
-    .db("koushiknandi")
+  return new MongoClient(dataBaseUrl)
+    .db("MernStack01")
     .collection("token");
 };
 
 const bookingarea = async function () {
-  return new MongoClient("mongodb://localhost:27017")
-    .db("koushiknandi")
+  return new MongoClient(dataBaseUrl)
+    .db("MernStack01")
     .collection("pendingBookingArea");
 };
 

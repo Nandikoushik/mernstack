@@ -1,0 +1,21 @@
+html {
+    --section-background-color: linear-gradient(
+      to bottom left,rgba(240, 81, 81, 0.925), rgba(4, 250, 250, 0.87)
+     
+    );
+    --image-gradient: linear-gradient(
+      to bottom left,
+      rgba(240, 81, 81, 0.925), rgba(4, 250, 250, 0.87)
+    );
+  
+    --imp-text-color: #030244;
+    --imp-bold-text-color: #ff0000;
+  }
+  .about {
+    text-align: center;
+    position: relative !important;
+    padding-top: 135px !important;
+    padding-bottom: 300px !important;
+    background-image: var(--section-background-color) !important;
+   
+  }

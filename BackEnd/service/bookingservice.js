@@ -6,7 +6,7 @@ const { MongoClient, ObjectId } = require("mongodb");
 
 // pendingBookingArea collection create
 const pendingBookingArea = async function () {
-  return new MongoClient("mongodb://localhost:27017")
+  return new MongoClient("mongodb://localhost:27017/")
     .db("koushiknandi")
     .collection("pendingBookingArea");
 };

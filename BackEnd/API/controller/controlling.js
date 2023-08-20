@@ -24,7 +24,8 @@ controller.registration = async function (req, res) {
 // login by user
 controller.login = async function (req, res) {
   try {
-    const data = req.body;
+    const data = req.body;  
+    console.log('data'+data);
     res.json(await service.loginuser(data));
   } catch (error) {
     res.send(error.name);
@@ -35,6 +36,7 @@ controller.login = async function (req, res) {
 controller.profregistration = async function (req, res) {
   try {
     const data = req.body;
+    console.log('data'+data);
     res.json(await service.createprof(data));
   } catch (error) {
     res.send(error.name);
