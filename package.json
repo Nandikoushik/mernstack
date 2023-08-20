@@ -3,8 +3,8 @@
     "concurrently": "^8.2.0"
   },
   "scripts": {
-    "start": "  npm i --prefix BackEnd && node BackEnd/app.js",
-    "client": " npm i --prefix FrontEnd && npm start --prefix FrontEnd",
+    "start": "node BackEnd/app.js",
+    "client": "npm start --prefix FrontEnd",
     "dev": "concurrently \"npm start\" \"npm run client\"",
     "build": "npm run build --prefix FrontEnd"
   }
