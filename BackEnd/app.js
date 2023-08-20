@@ -12,29 +12,29 @@ app.use(
 
   })
 );
-
+const PORT = process.env.PORT || 6060;
 const __dirname1=path.resolve();
 if(process.env.NODE_ENV==='production'){
   app.use(express.static(path.join(__dirname1,"../FrontEnd/build")));
   app.use('*',(req,res)=>{
     res.sendFile(path.resolve(__dirname1,"..","FrontEnd","build","index.html"));
-  })
+  });
+  app.use("/", route);
 }else{
 app.get('/',(req,res)=>{
-  res.send('Server Is Running ');
-})
+  res.send(`Server Is Succesfully Running On PORT ${PORT}`);
+});
+app.use("/", route);
 }
 
 app.use(cors());
 const dotenv = require("dotenv");
 dotenv.config();
-app.use("/", route);
-const port = process.env.PORT || 6060;
-app.listen(port, (err) => {
+app.listen(PORT, (err) => {
   if (err) {
-    console.log(`Error detected on port : ${port}`);
+    console.log(`Error detected on port : ${PORT}`);
   } else {
-    console.log(`Connection Success on port : ${port}`);
+    console.log(`Connection Success on port : ${PORT}`);
   }
 });
 

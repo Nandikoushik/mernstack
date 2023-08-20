@@ -6,7 +6,6 @@
     "start": "node BackEnd/app.js",
     "client": "npm start --prefix FrontEnd",
     "dev": "concurrently \"npm start\" \"npm run client\"",
-    "server": "node BackEnd/app.js",
-    "build":"npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix FrontEnd && npm run build --prefix FrontEnd"
+    "build": "npm run build --prefix FrontEnd"
   }
 }
